@@ -1,4 +1,6 @@
 using CoreApiWithImage.Models.Domain;
+using CoreApiWithImage.Repository.Abstract;
+using CoreApiWithImage.Repository.Implementation;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("conn")));
-builder.Services.AddControllers();
+builder.Services.AddTransient<IFileService,FileService>();
 
 
 var app = builder.Build();
