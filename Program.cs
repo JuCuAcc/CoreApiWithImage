@@ -10,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("conn")));
 builder.Services.AddTransient<IFileService,FileService>();
+builder.Services.AddTransient<IProductRepository, ProductRepository>();
 
 
 var app = builder.Build();
